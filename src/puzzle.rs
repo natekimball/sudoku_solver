@@ -9,7 +9,7 @@ pub fn create_puzzle() -> Result<Vec<Vec<i32>>, io::Error> {
         let index = args.iter().position(|x| x == "-f").unwrap();
         puzzle = puzzle_from_file(args.get(index+1).expect("No file specified after -f"));
     } else {
-        puzzle = puzzle_from_file("resources/test.txt".to_owned());
+        puzzle = puzzle_from_file("resources/test.txt");
     }
     if puzzle.len()!=9 || puzzle[0].len()!=9 || !solvable(&puzzle) {
         return Err(Error::new(ErrorKind::InvalidInput, "Invalid sudoku puzzle."));
@@ -37,7 +37,7 @@ fn puzzle_from_input() -> Vec<Vec<i32>> {
     puzzle
 }
 
-fn puzzle_from_file(file: String) -> Vec<Vec<i32>> {
+fn puzzle_from_file(file: &str) -> Vec<Vec<i32>> {
     let contents = fs::read_to_string(file).expect("Something went wrong reading the file");
     contents.lines().map(|line| line.split_whitespace().map(|num| num.parse::<i32>().unwrap()).collect()).collect()
 }
