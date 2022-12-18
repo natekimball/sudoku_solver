@@ -7,7 +7,7 @@ pub fn create_puzzle() -> Result<Vec<Vec<i32>>, io::Error> {
         puzzle = puzzle_from_input();
     } else if args.contains(&"-f".to_string()) {
         let index = args.iter().position(|x| x == "-f").unwrap();
-        puzzle = puzzle_from_file("resources/".to_owned()+args.get(index+1).expect("No file specified after -f"));
+        puzzle = puzzle_from_file(args.get(index+1).expect("No file specified after -f"));
     } else {
         puzzle = puzzle_from_file("resources/test.txt".to_owned());
     }
