@@ -1,5 +1,5 @@
 // backtracking depth-first algorithm
-fn solve(puzzle: &mut Vec<Vec<u8>>) -> bool {
+pub fn solve(puzzle: &mut Vec<Vec<u8>>) -> bool {
     for i in 0..9 {
         for j in 0..9 {
             if puzzle[i][j] == 0 {
