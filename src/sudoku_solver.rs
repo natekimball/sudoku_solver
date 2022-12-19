@@ -1,4 +1,5 @@
-pub fn solve(puzzle: &mut Vec<Vec<i32>>) -> bool {
+// backtracking depth-first algorithm
+fn solve(puzzle: &mut Vec<Vec<u8>>) -> bool {
     for i in 0..9 {
         for j in 0..9 {
             if puzzle[i][j] == 0 {
@@ -22,7 +23,7 @@ pub fn solve(puzzle: &mut Vec<Vec<i32>>) -> bool {
     is_complete(puzzle)
 }
 
-fn is_valid(puzzle: &Vec<Vec<i32>>, i: usize, j: usize, k: i32) -> bool {
+fn is_valid(puzzle: &Vec<Vec<u8>>, i: usize, j: usize, k: u8) -> bool {
     for l in 0..9 {
         if puzzle[i][l] == k {
             return false;
@@ -44,7 +45,7 @@ fn is_valid(puzzle: &Vec<Vec<i32>>, i: usize, j: usize, k: i32) -> bool {
     true
 }
 
-fn is_complete(puzzle: &Vec<Vec<i32>>) -> bool {
+fn is_complete(puzzle: &Vec<Vec<u8>>) -> bool {
     for i in 0..9 {
         let mut row = vec![0;9];
         let mut col = vec![0;9];
@@ -116,6 +117,7 @@ mod tests {
         assert!(is_complete(&puzzle));
     }
     #[test]
+    #[ignore = "takes a very long time"]
     fn solve_difficult_sudoku() {
         let mut puzzle = vec![
             vec![0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -167,7 +169,7 @@ mod tests {
         }
 }
     
-// fn solve(mut puzzle: Vec<Vec<i32>>) -> Solution {
+// fn solve(mut puzzle: Vec<Vec<u8>>) -> Solution {
 //     // println!("solving...");
 //     // puzzle.iter().for_each(|row| println!("{:?}",row));
 //     for i in 0..9 {
@@ -198,6 +200,6 @@ mod tests {
 // }
 
 // pub struct Solution {
-//     puzzle: Vec<Vec<i32>>,
+//     puzzle: Vec<Vec<u8>>,
 //     solved: bool
 // }
